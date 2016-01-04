@@ -11,8 +11,21 @@ var List = React.createClass({
     this.setState({showAdd: !this.state.showAdd});
   },
 
+  addItemName: function(e) {
+    this.setState({itemName: e.currentTarget.value});
+  },
+
   addItemForm: function() {
-    alert('alerts when form is rerendered!');
+    if(this.state.showAdd){
+      return( <div>
+                <form onSubmit={this.submitItem}>
+                  <div className='input-field'>
+                    <input autoFocus='true' placeholder='Item Name' type='text' onChange={this.addItemName} />
+                    <button className='btn waves-effect' type='submit'>submit</button>
+                  </div>
+                </form>
+              </div>);
+    }
   },
 
   render: function() {
