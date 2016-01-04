@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  
   def create
     item = Item.create(item_params)
     render json: item
