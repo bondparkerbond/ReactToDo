@@ -6,10 +6,14 @@ var List = React.createClass({
   getDefaultState: function() {
     return { items: [] }
   },
-  
+
+  showAddForm: function() {
+    alert('Show add form!');
+  },
+
   render: function() {
     return( <div>
-              <h1> My First Component </h1>
+              <a className='waves-effect waves-light btn' onClick={this.showAddForm}>Add Item</a>
             </div> );
   }
 });
