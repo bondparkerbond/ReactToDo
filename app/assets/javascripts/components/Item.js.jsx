@@ -8,7 +8,7 @@ var Item = React.createClass({
                 </div>
                 <div className='col s2'>
                   <input type='checkbox' id={id} checked={this.props.complete} />
-                  <label for={id}>Complete?</label>
+                  <label htmlFor={id}>Complete?</label>
                 </div>
               </div>
             </li>);
