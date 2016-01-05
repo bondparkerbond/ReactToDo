@@ -3,6 +3,21 @@ var List = React.createClass({
     return { items: this.props.items }
   },
 
+  componentDidMount: function() {
+    this.refreshList();
+  },
+
+  refreshList: function() {
+    refreshList ???
+    $.ajax({
+      url: '/items',
+      type: 'GET',
+      success: function(data) {
+        self.setState({ items: data });
+      }
+    });
+  },
+
   getDefaultState: function() {
     return { items: [] }
   },
@@ -48,7 +63,7 @@ var List = React.createClass({
     for(var i = 0; i < this.state.items.length; i++){
       var item = this.state.items[i];
       var key = "Item-" + item.id;
-      items.push(<Item id={item.id} key={key} name={item.name} complete={item.complete} />);
+      items.push(<Item id={item.id} key={key} refreshList={this.refreshList} name={item.name} complete={item.complete} />);
     }
     return items;
   },
