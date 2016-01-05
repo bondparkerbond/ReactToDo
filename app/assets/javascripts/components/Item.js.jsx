@@ -3,7 +3,10 @@ var Item = React.createClass({
     $.ajax({
       url: '/check_item',
       type: 'PUT',
-      data: { item: { complete: !this.props.complete }, id: this.props.id }
+      data: { item: { complete: !this.props.complete }, id: this.props.id },
+      success: function() {
+        self.props.refreshList();
+      }
     });
   },
 

@@ -8,7 +8,7 @@ var List = React.createClass({
   },
 
   refreshList: function() {
-    refreshList ???
+    var self = this;
     $.ajax({
       url: '/items',
       type: 'GET',
