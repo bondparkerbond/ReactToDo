@@ -1,4 +1,12 @@
 var Item = React.createClass({
+  getInitialState: function() {
+    return { edit: false };
+  },
+
+  toggleEdit: function() {
+    this.setState({ edit: !this.state.edit });
+  },
+
   checkItem: function() {
     var self = this;
     $.ajax({
@@ -26,5 +34,13 @@ var Item = React.createClass({
                 </div>
               </div>
             </li>);
+  },
+
+  render: function() {
+    if (this.state.edit) {
+      return this.edit();
+    } else {
+        return this.item();
+    }
   }
 });
