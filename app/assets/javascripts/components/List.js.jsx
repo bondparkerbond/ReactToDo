@@ -47,7 +47,8 @@ var List = React.createClass({
     var items = [];
     for(var i = 0; i < this.state.items.length; i++){
       var item = this.state.items[i];
-      items.push(<Item id={item.id} name={item.name} complete={item.complete} />);
+      var key = "Item-" + item.id;
+      items.push(<Item id={item.id} key={key} name={item.name} complete={item.complete} />);
     }
     return items;
   },
