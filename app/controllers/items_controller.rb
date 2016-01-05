@@ -8,6 +8,12 @@ class ItemsController < ApplicationController
     render json: item
   end
 
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    render json: item
+  end
+
   def check_item
     checked = params[:item][:complete] == 'true' ? true : false
     item = Item.find(params[:id])

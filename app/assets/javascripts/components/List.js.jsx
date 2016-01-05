@@ -1,6 +1,6 @@
 var List = React.createClass({
   getInitialState: function() {
-    return { items: this.props.items }
+    return { items: [] }
   },
 
   componentDidMount: function() {
@@ -16,10 +16,6 @@ var List = React.createClass({
         self.setState({ items: data });
       }
     });
-  },
-
-  getDefaultState: function() {
-    return { items: [] }
   },
 
   showAddForm: function() {
@@ -39,7 +35,7 @@ var List = React.createClass({
       data: { item: { name: this.state.itemName } },
       success: function(data) {
         var items = self.state.items;
-        items.push({ name: data.name, complete: data.complete });
+        items.push(data);
         self.setState({items: items, showAdd: false, itemName: null});
       }
     });
