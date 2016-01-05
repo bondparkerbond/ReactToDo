@@ -14,6 +14,12 @@ class ItemsController < ApplicationController
     render json: item
   end
 
+  def destroy
+    Item.find(params[:id]).destroy
+    head :ok
+    # head :ok says: hey rails, you don't need to render anything.
+  end
+
   def check_item
     checked = params[:item][:complete] == 'true' ? true : false
     item = Item.find(params[:id])

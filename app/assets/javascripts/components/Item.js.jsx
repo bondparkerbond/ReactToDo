@@ -22,7 +22,7 @@ var Item = React.createClass({
   item: function() {
     var id = "item-" + this.props.id;
     var checked = this.props.complete ? 'checked' : '';
-    var itemClass = 'col s10 ' + checked;
+    var itemClass = 'col s9 ' + checked;
     return( <li>
               <div className='row'>
                 <div onClick={this.toggleEdit} className={itemClass}>
@@ -31,6 +31,9 @@ var Item = React.createClass({
                 <div onClick={this.checkItem} className='col s2'>
                   <input type='checkbox' id={id} defaultChecked={this.props.complete} />
                   <label htmlFor={id}>Complete?</label>
+                </div>
+                <div onClick={this.deleteItem} className='col s1'>
+                  <button className='btn btn-floating'>X</button>
                 </div>
               </div>
             </li>);
@@ -42,6 +45,7 @@ var Item = React.createClass({
                 <div className='col s10'>
                   <form onSubmit={this.updateItem}>
                     <input autoFocus={true} type='text' defaultValue={this.props.name} ref='itemName' />
+                    <button className='btn' type='submit'>Submit</button>
                   </form>
                 </div>
                 <div className='col s2'>
@@ -51,13 +55,26 @@ var Item = React.createClass({
             </li>);
   },
 
-  updateItem: function() {
+  updateItem: function(e) {
+    e.preventDefault();
     var name = ReactDOM.findDOMNode(this.refs.itemName).value;
     var self = this;
     $.ajax({
       url: '/items/' + this.props.id,
       type: 'PUT',
       data: { item: { name: name }},
+      success: function() {
+        self.setState({edit: false});
+        self.props.refreshList();
+      }
+    });
+  },
+
+  deleteItem: function() {
+    var self = this;
+    $.ajax({
+      url: '/items/' + this.props.id,
+      type: 'DELETE',
       success: function() {
         self.props.refreshList();
       }
