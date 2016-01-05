@@ -46,19 +46,8 @@ var List = React.createClass({
   displayItems: function() {
     var items = [];
     for(var i = 0; i < this.state.items.length; i++){
-      items.push( <ul>
-                    <li>
-                      <div className='row'>
-                        <div className='col s10'>
-                          {this.state.items[i].name}
-                        </div>
-                        <div className='col s2'>
-                          <input type='checkbox' checked={this.state.items[i].complete} />
-                          <label>Complete?</label>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>);
+      var item = this.state.items[i];
+      items.push(<Item id={item.id} name={item.name} complete={item.complete} />);
     }
     return items;
   },
