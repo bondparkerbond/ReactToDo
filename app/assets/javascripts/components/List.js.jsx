@@ -54,15 +54,15 @@ var List = React.createClass({
   },
 
   render: function() {
-    return( <div>
+    return( <div className='container'>
               <a className='waves-effect waves-light btn' onClick={this.showAddForm}>Add Item</a>
               {this.addItemForm()}
               <div className='card blue-grey darken-1'>
                 <div className='card-content white-text'>
                   <span className='card-title'>To Do</span>
+                  <ul> {this.displayItems()} </ul>
                 </div>
               </div>
-              {this.displayItems()}
             </div> );
   }
 });
