@@ -1,24 +1,23 @@
 class ItemsController < ApplicationController
+  before_action :list
+
   def index
-    # render json: Item.all.order(created_at: :asc)
-    # changed from render to set variable for use later.
-    @items = Item.all.order(:created_at)
+    @items = @list.items.order(:created_at)
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = @list.items.create(item_params)
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    render json: item
+    @item = @list.items.find(params[:id])
+    @item.update(item_params)
+    render json: @item
   end
 
   def destroy
-    Item.find(params[:id]).destroy
+    @list.items.find(params[:id]).destroy
     head :ok
-    # head :ok says: hey rails, you don't need to render anything.
   end
 
   def check_item
@@ -29,6 +28,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def list
+    @list = List.find(params[:list_id])
+  end
 
   def item_params
     params.require(:item).permit(:name, :completed)
