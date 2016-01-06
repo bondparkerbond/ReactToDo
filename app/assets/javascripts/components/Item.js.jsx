@@ -74,6 +74,7 @@ var Item = React.createClass({
     var self = this;
     $.ajax({
       url: this.props.url,
+      data: {list_id: this.props.listId},
       type: 'DELETE',
       success: function() {
         self.props.refreshList();

@@ -1,4 +1,5 @@
 var List = React.createClass({
+  
   getInitialState: function() {
     return { items: [] };
   },
@@ -11,6 +12,7 @@ var List = React.createClass({
     var self = this;
     $.ajax({
       url: '/items',
+      data: {list_id: this.props.id},
       type: 'GET',
       success: function(data) {
         self.setState({ items: data.items });
@@ -32,7 +34,7 @@ var List = React.createClass({
     $.ajax({
       url: '/items',
       type: 'POST',
-      data: { item: { name: this.state.itemName } },
+      data: {list_id: this.props.id, item: { name: this.state.itemName } },
       success: function(data) {
         var items = self.state.items;
         items.push(data);
@@ -59,7 +61,7 @@ var List = React.createClass({
     for(var i = 0; i < this.state.items.length; i++){
       var item = this.state.items[i];
       var key = "Item-" + item.id;
-      items.push(<Item id={item.id} key={key} url={item.url} refreshList={this.refreshList} name={item.name} complete={item.complete} />);
+      items.push(<Item id={item.id} listId={this.props.id} key={key} url={item.url} refreshList={this.refreshList} name={item.name} complete={item.complete} />);
     }
     return items;
   },
