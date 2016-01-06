@@ -70,8 +70,10 @@ var List = React.createClass({
               {this.addItemForm()}
               <div className='card blue-grey darken-1'>
                 <div className='card-content white-text'>
-                  <span className='card-title'>To Do</span>
-                  <ul> {this.displayItems()} </ul>
+                  <span className='card-title'>{this.props.name}</span>
+                  <ul>
+                    {this.displayItems()}
+                  </ul>
                 </div>
               </div>
             </div> );

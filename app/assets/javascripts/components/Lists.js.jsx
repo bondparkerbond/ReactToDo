@@ -30,11 +30,12 @@ var Lists = React.createClass({
     $.ajax({
       url: '/lists',
       type: 'POST',
-      data: {list: {name: this.refs.listName.value}}
+      data: {id: this.props.boardId, list: {name: this.refs.listName.value}},
       success: function(data) {
         var lists = self.state.lists;
-        lists.push(<List />);
-        self.setState({lists: lists});
+        lists.push(data);
+        self.refs.listName.value = '';
+        self.setState({lists: lists, showAdd: false});
       }
     });
   },
@@ -52,9 +53,19 @@ var Lists = React.createClass({
     }
   },
 
+  displayLists: function() {
+    var lists = [];
+    for(var i = 0; i < this.state.lists.length; i++) {
+      var list = this.state.lists[i];
+      var key = 'list-' + list.id;
+      lists.push(<List key={key} id={list.id} name={list.name} />);
+    }
+    return lists;
+  },
+
   render: function() {
     return( <div>
-              <a className='waves-effect waves-light btn' onClick={}>Boards</a>
+              <a className='waves-effect waves-light btn' onClick={this.props.toggleBoard}>Boards</a>
               <a className='btn waves-effect waves-light' onClick={this.showAddForm}>Add List</a>
               {this.addListForm()}
               <div className='row'>

@@ -2,19 +2,21 @@ class ListsController < ApplicationController
   before_action :board
   
   def index
-    board = Board.find(params[:id])
-    @lists = board.lists
+    @lists = @board.lists
   end
 
   def create
-    board = Board.find(params[:id])
-    board.lists.create(list_params)
+    @list = @board.lists.create(list_params)
   end
 
   private
 
   def board
     @board = Board.find(params[:id])
+  end
+
+  def list_params
+    params.require(:list).permit(:name, :percent_complete)
   end
 
 end
