@@ -15,7 +15,7 @@ var Lists = React.createClass({
       type: 'GET',
       data: {id: this.props.boardId},
       success: function(data) {
-        self.setState({lists: data});
+        self.setState(data);
       }
     });
   },
