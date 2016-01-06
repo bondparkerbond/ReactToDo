@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   def index
-    render json: Item.all.order(created_at: :asc)
+    # render json: Item.all.order(created_at: :asc)
+    # changed from render to set variable for use later.
+    @items = Item.all.order(:created_at)
   end
 
   def create

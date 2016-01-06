@@ -1,6 +1,6 @@
 var List = React.createClass({
   getInitialState: function() {
-    return { items: [] }
+    return { items: [] };
   },
 
   componentDidMount: function() {
