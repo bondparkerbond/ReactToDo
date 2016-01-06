@@ -13,7 +13,7 @@ var List = React.createClass({
       url: '/items',
       type: 'GET',
       success: function(data) {
-        self.setState({ items: data });
+        self.setState({ items: data.items });
       }
     });
   },
