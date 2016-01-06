@@ -1,7 +1,7 @@
 var Board = React.createClass({
 
   loadBoard: function() {
-    alert('this should load our board items');
+    this.props.toggleBoard(this.props.id);
   },
 
   render: function() {
