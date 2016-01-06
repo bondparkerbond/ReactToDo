@@ -60,7 +60,7 @@ var Item = React.createClass({
     var name = ReactDOM.findDOMNode(this.refs.itemName).value;
     var self = this;
     $.ajax({
-      url: '/items/' + this.props.id,
+      url: this.props.url,
       type: 'PUT',
       data: { item: { name: name }},
       success: function() {
@@ -73,7 +73,7 @@ var Item = React.createClass({
   deleteItem: function() {
     var self = this;
     $.ajax({
-      url: '/items/' + this.props.id,
+      url: this.props.url,
       type: 'DELETE',
       success: function() {
         self.props.refreshList();

@@ -6,8 +6,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.create(item_params)
-    render json: item
+    @item = Item.create(item_params)
   end
 
   def update

@@ -59,7 +59,7 @@ var List = React.createClass({
     for(var i = 0; i < this.state.items.length; i++){
       var item = this.state.items[i];
       var key = "Item-" + item.id;
-      items.push(<Item id={item.id} key={key} refreshList={this.refreshList} name={item.name} complete={item.complete} />);
+      items.push(<Item id={item.id} key={key} url={item.url} refreshList={this.refreshList} name={item.name} complete={item.complete} />);
     }
     return items;
   },
